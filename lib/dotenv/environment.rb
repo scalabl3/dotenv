@@ -19,7 +19,7 @@ module Dotenv
     end
 
     def apply_and_set
-      each { |k,v| ENV[k] ||= v; exec "export #{k}=#{v}" }
+      each { |k,v| ENV[k] ||= v; exec "export #{k}=#{v};echo $#{k}" }
     end
 
     def apply!
@@ -27,7 +27,7 @@ module Dotenv
     end
 
     def apply_and_set!
-      each { |k,v| ENV[k] = v; exec "export #{k}=#{v}" }
+      each { |k,v| ENV[k] = v; exec "export #{k}=#{v};echo $#{k}" }
     end
   end
 end
