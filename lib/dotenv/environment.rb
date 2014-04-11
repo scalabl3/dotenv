@@ -18,8 +18,16 @@ module Dotenv
       each { |k,v| ENV[k] ||= v }
     end
 
+    def apply_and_set
+      each { |k,v| ENV[k] ||= v; exec "export #{k}=#{v}" }
+    end
+
     def apply!
       each { |k,v| ENV[k] = v }
+    end
+
+    def apply_and_set!
+      each { |k,v| ENV[k] = v; exec "export #{k}=#{v}" }
     end
   end
 end

@@ -7,5 +7,12 @@ begin
 rescue Errno::ENOENT => e
   abort e.message
 else
-  exec *ARGV unless ARGV.empty?
+	unless ARGV.empty?
+		if ARGV[0] == "global"
+			Dotenv.load_and_set!
+		else
+			exec *ARGV unless ARGV.empty?
+		end
+	end
+  
 end
